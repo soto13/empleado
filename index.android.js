@@ -9,7 +9,7 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
-  View
+  View, Navigator, TouchableHighlight
 } from 'react-native';
 
 export default class empleado extends Component {
@@ -20,11 +20,7 @@ export default class empleado extends Component {
           Welcome to React Native!
         </Text>
         <Text style={styles.instructions}>
-          To get started, edit index.android.js
-        </Text>
-        <Text style={styles.instructions}>
-          Double tap R on your keyboard to reload,{'\n'}
-          Shake or press menu button for dev menu
+          Hello world bitch >:v
         </Text>
       </View>
     );
@@ -51,3 +47,20 @@ const styles = StyleSheet.create({
 });
 
 AppRegistry.registerComponent('empleado', () => empleado);
+
+// rutas y datos
+/*
+route_api: { empleados-app.herokuapp.com },
+data: {
+  firstname: String,
+  lastname: String,
+  photo: String,
+  latitude: String,
+  longitude: String
+}
+mean_routes_api:{
+  POST && GET: empleados-app.herokuapp.com/api/empleado,
+  PUT && DELETE: empleados-app.herokuapp.com/api/empleado/:id_empleado
+}
+*/
+
