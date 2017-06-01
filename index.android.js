@@ -9,24 +9,105 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
-  View, Navigator, TouchableHighlight
+  View,
+  TouchableHighlight,
+  Button
 } from 'react-native';
+import {
+  Navigator,
+  StackNavigator
+} from 'react-navigation';
+// crear barra de navegacion
 
-export default class empleado extends Component {
+const MainScreen = require('./app/components/MainScreen');
+const Dashboard = require('./app/components/dashboard/dashboard');
+
+const App = StackNavigator({
+  Main: { screen: MainScreen },
+  Dashboard: { screen: Dashboard }
+}, {
+  initialRouteName: 'Main'
+});
+
+class empleado extends Component {
+  // a mostrar todo los que este en pantalla :v
+  static navigationOptions = {
+    title: 'Home',
+  };
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          Hello world bitch >:v
-        </Text>
-      </View>
+      <Dashboard/>
     );
   }
 }
+/*
+let NavigatorBarRouterMap = {
+  LeftButton: function(route, navigator, index){
+    if(route.name == 'MainScreen' || route.name == 'Dashboard'){
+      return null;
+    }
+    return (
+      <TouchableHighlight underlayColor='gba(0,0,0,0)' onPress={()=>{
+        if(index > 0){
+          navigator.pop();
+        }
+       }}>
+         <Text style={{marginTop: 10, marginLeft:20, color:'#e3e3e3'}}>Atras</Text>
+      </TouchableHighlight>
+    )
+  },
+  RightButton: function(route){
+    return null;
+  },
+  Title: function(route){
+    if(route.name == 'MainScreen' || route.name == 'Dashboard'){
+      return null;
+    }
+    return (<Text style={{marginTop: 10, color:'#e3e3e3', fontWeight: 'bold' }}>{route.name}</Text>)
+  }
+}
 
+const MainScreen = require('./app/components/MainScreen');
+
+export default class empleado extends Component {
+  // se implementa la navegacion
+  renderScene(route, navigator){
+    switch (route.name) {
+      case 'MainScreen':
+        return (
+          <MainScreen {...route.props} navigator={navigator} route={route}/>
+        );
+      case 'Dashboard':
+        return (
+          <Dashboard {...route.props} navigator={navigator} route={route}/>
+        );
+      // sin esto no se puede acceder a los detalles
+      case 'Details':
+        return (
+          <Details {...route.props} navigator={navigator} route={route}/>
+        );
+    }
+  }
+  // a mostrar todo los que este en pantalla :v
+  render() {
+    return (
+      <Navigator style={styles.bar}
+        initialRoute={{name: 'MainScreen'}}
+        renderScene={this.renderScene}
+        configureScene={(route)=>{ // configureScene ? configureScene : Navigator.SceneConfigs.FloatFromRight
+          if(route.sceneConfig){
+            return route.sceneConfig;
+          }
+          return Navigator.SceneConfigs.FloatFromRight;
+        }}
+        navigationBar={
+          <Navigator.NavigationBar routeMapper={NavigationBarRouteMap} />
+        }
+      />
+    );
+  }
+}
+*/
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -44,6 +125,9 @@ const styles = StyleSheet.create({
     color: '#333333',
     marginBottom: 5,
   },
+  bar: {
+        backgroundColor: '#2c2c2d',
+    }
 });
 
 AppRegistry.registerComponent('empleado', () => empleado);
