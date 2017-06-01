@@ -4,6 +4,8 @@ import {
 	FETCHIN_DATA_FAILURE
 } from '../constants';
 
+import getDataApi from '../api'
+
 export const selected_tab = (tabId) => {
 	return {
 		type: 'selected_tab',
@@ -31,5 +33,14 @@ export const getDataFailure = () => {
 }
 
 export const fetchData = () => {
-	// return function(){}
+	return (dispatch)=>{
+		dispatch(getData());
+		getDataApi()
+		.then(([res, json])=>{
+			dispatch(getDataSuccess(json));
+		})
+		.catch((err)=>{
+			console.log('ha ocurrido un error:', err);
+		})
+	}
 }

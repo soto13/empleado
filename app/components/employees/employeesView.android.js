@@ -6,6 +6,7 @@ import {
 } from 'react-native';
 
 import { connect } from 'react-redux';
+import fetchData from '../actions';
 
 class EmployeesView extends Component {
 	getEmployees(){
@@ -26,6 +27,10 @@ const mapStateToProps = state => {
 	return { employees: state.employees }
 }
 
-export default connect(mapStateToProps)(EmployeesView);
+const mapDispatchToProps = (dispatch)=>{
+	return {
+		fetchData: ()=>{ dispatch.fetchData }
+	}
+}
 
-// module.exports = EmployeesViews;
+export default connect(mapStateToProps, mapDispatchToProps)(EmployeesView);
