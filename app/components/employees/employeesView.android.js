@@ -19,7 +19,15 @@ class EmployeesView extends Component {
 	getEmployees(){
 		const { dataEmployees } = this.props;
 		return employeesData = dataEmployees.data.map((employee, key) => {
-			return <Text key={ key }>{ employee.firstname }</Text>
+			return (
+				<View key={ key }>
+					<Text>{ employee.firstname }</Text>
+					<Text>{ employee.lastname }</Text>
+					<Text>{employee.photo}</Text>
+					<Text>{employee.longitude}</Text>
+					<Text>{employee.latitude}</Text>
+				</View>
+			)
 		});
 	}
 	render(){
