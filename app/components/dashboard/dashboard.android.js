@@ -22,7 +22,7 @@ class Dashboard extends Component {
 	render(){
 		return (
 			<Provider store={store}>
-				<View style={ { flex:1 } }>
+				<View style={{ flex:1 }}>
 					<EmployeesList/>
 				</View>
 			</Provider>

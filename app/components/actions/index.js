@@ -1,7 +1,7 @@
 import {
-	FETCHIN_DATA,
-	FETCHIN_DATA_SUCCESS,
-	FETCHIN_DATA_FAILURE
+	FETCHING_DATA,
+	FETCHING_DATA_SUCCESS,
+	FETCHING_DATA_FAILURE
 } from '../constants';
 
 import getDataApi from '../api'
@@ -15,20 +15,20 @@ export const selected_tab = (tabId) => {
 
 export const getData = () => {
 	return {
-		type: 'FETCHIN_DATA'
+		type: 'FETCHING_DATA'
 	}
 }
 
 export const getDataSuccess = (data) => {
 	return {
-		type: 'FETCHIN_DATA_SUCCESS',
+		type: 'FETCHING_DATA_SUCCESS',
 		data
 	}
 }
 
 export const getDataFailure = () => {
 	return {
-		type: 'FETCHIN_DATA_FAILURE'
+		type: 'FETCHING_DATA_FAILURE'
 	}
 }
 
@@ -41,6 +41,6 @@ export const fetchData = () => {
 		})
 		.catch((err)=>{
 			console.log('ha ocurrido un error:', err);
-		})
+		});
 	}
 }

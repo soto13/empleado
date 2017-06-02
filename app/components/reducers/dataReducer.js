@@ -1,7 +1,7 @@
 import {
-	FETCHIN_DATA,
-	FETCHIN_DATA_SUCCESS,
-	FETCHIN_DATA_FAILURE
+	FETCHING_DATA,
+	FETCHING_DATA_SUCCESS,
+	FETCHING_DATA_FAILURE
 } from '../constants';
 
 const initialState = {
@@ -12,20 +12,20 @@ const initialState = {
 
 export default dataReducer = (state = initialState, action)=>{
 	switch (action.type) {
-		case FETCHIN_DATA:
+		case FETCHING_DATA:
 			return {
 				...state,
 				data: [],
 				isFetching: true
 			}
 		
-		case FETCHIN_DATA_SUCCESS:
+		case FETCHING_DATA_SUCCESS:
 			return {
 				...state,
 				data: action.data,
 				isFetching: false
 			}
-		case FETCHIN_DATA_FAILURE:
+		case FETCHING_DATA_FAILURE:
 			return {
 				...state,
 				isFetching: false,

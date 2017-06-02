@@ -6,30 +6,42 @@ import {
 } from 'react-native';
 
 import { connect } from 'react-redux';
-import fetchData from '../actions';
+import { StackNavigator } from 'react-navigation';
+import { fetchData } from '../actions';
 
 class EmployeesView extends Component {
+	static navigationOptions = {
+		title: 'Vista Empleados',
+	}
+	componentWillMount(){
+		this.props.fetchData();
+	}
 	getEmployees(){
-		const { employees } = this.props;
-		return employeesData = employees.map((employee, key) => {
+		const { dataEmployees } = this.props;
+		return employeesData = dataEmployees.data.map((employee, key) => {
 			return <Text key={ key }>{ employee.firstname }</Text>
 		});
 	}
 	render(){
 		console.log(this.props);
 		return (
-			<View>{ this.getEmployees() }</View>
+			<View>
+				{ this.props.dataEmployees.isFetching && <Text>loading data</Text> }
+				{
+					this.props.dataEmployees.data.length ? this.getEmployees() : <Text>no hay nada</Text>
+			}
+			</View>
 		)
 	}
 }
 
-const mapStateToProps = state => {
-	return { employees: state.employees }
+const mapStateToProps = state => {	
+	return { dataEmployees: state.dataReducer }
 }
 
 const mapDispatchToProps = (dispatch)=>{
 	return {
-		fetchData: ()=>{ dispatch.fetchData }
+		fetchData: ()=>{ dispatch(fetchData()) }
 	}
 }
 
