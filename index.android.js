@@ -21,6 +21,7 @@ import {
 
 const MainScreen = require('./app/components/MainScreen');
 const Dashboard = require('./app/components/dashboard/dashboard');
+import EmployeeRegister from './app/components/employees/employeesRegister';
 
 const App = StackNavigator({
   Main: { screen: MainScreen },
@@ -36,7 +37,7 @@ class empleado extends Component {
   };
   render() {
     return (
-      <Dashboard/>
+      <EmployeeRegister/>
     );
   }
 }

@@ -21,9 +21,9 @@ class EmployeesView extends Component {
 		return employeesData = dataEmployees.data.map((employee, key) => {
 			return (
 				<View key={ key }>
+					<Text>{employee.photo}</Text>
 					<Text>{ employee.firstname }</Text>
 					<Text>{ employee.lastname }</Text>
-					<Text>{employee.photo}</Text>
 					<Text>{employee.longitude}</Text>
 					<Text>{employee.latitude}</Text>
 				</View>
