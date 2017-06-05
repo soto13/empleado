@@ -4,7 +4,7 @@ import {
 	FETCHING_DATA_FAILURE
 } from '../constants';
 
-import getDataApi from '../api'
+import getDataApi, { newEmployee } from '../api'
 
 export const selected_tab = (tabId) => {
 	return {
@@ -42,5 +42,12 @@ export const fetchData = () => {
 		.catch((err)=>{
 			console.log('ha ocurrido un error:', err);
 		});
+	}
+}
+
+export const fetchDataSend = (state) => {
+	return (dispatch)=>{
+		dispatch(getData())
+    dispatch(getDataSuccess(state));
 	}
 }

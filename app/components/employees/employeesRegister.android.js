@@ -11,39 +11,21 @@ import {
 import { StackNavigator } from 'react-navigation';
 import { newEmployee } from '../api';
 
+import { Provider } from 'react-redux';
+import configureStore from '../config/configureStore';
+import EmployeeFormTextInput from './employeeFormTextInput'
+
+let store = configureStore();
+
 class EmployeesRegister extends Component {
 	static navigationOptions = {
 		title: 'Registrar Empleados'
 	}
-	constructor(props){
-		super(props);
-		this.state = {
-			firstname: '',
-			lastname: '',
-			photo: '',
-			longitude: '',
-			latitude: ''
-		}
-	}
 	render(){
 		return (
-			<View>
-				<Text>Hola desde registrar</Text>
-				<Text>Nombre</Text>
-				<TextInput onChangeText={(firstname)=>this.setState({firstname})} placeholder={'firstname'}/>
-				<Text>Apellido</Text>
-				<TextInput onChangeText={(lastname)=>this.setState({lastname})} placeholder={'lastname'}/>
-				<Text>Foto prueba</Text>
-				<TextInput onChangeText={(photo)=>this.setState({photo})} placeholder={'photo'}/>
-				<Text>longitud</Text>
-				<TextInput onChangeText={(longitude)=>this.setState({longitude})} placeholder={'longitude'}/>
-				<Text>latitud</Text>
-				<TextInput onChangeText={(latitude)=>this.setState({latitude})} placeholder={'latitude'}/>
-				<TextInput placeholder='Latitud'/>
-					<TouchableHighlight style={{padding: 15, backgroundColor: '#fed136'}}>
-						<Text style={styles.welcome}>Enviar</Text>
-					</TouchableHighlight>
-			</View>
+			<Provider store={store} style={styles.container}>
+				<EmployeeFormTextInput/>
+			</Provider>
 		)
 	}
 }
@@ -70,4 +52,5 @@ const styles = StyleSheet.create({
     }
 });
 
+// <Button title='Enviar' onPress={ newEmployee(this.props) } accessibilityLabel='vamos a ver que pasa'/>
 export default EmployeesRegister;

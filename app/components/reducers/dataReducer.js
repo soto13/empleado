@@ -5,7 +5,13 @@ import {
 } from '../constants';
 
 const initialState = {
-	data: [],
+	data: [{
+ 			firstname: '',
+			lastname: '',
+			photo: '',
+			longitude: '',
+			latitude: ''
+  }],
 	isFetching: false,
 	error: false
 }

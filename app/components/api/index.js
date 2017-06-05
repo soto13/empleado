@@ -1,5 +1,5 @@
 import { Alert } from 'react-native';
-const URL = 'http://empleados-app.herokuapp.com/api/empleado';
+const URL = 'https://empleados-app.herokuapp.com/api/empleado';
 // const URL = 'https://jsonplaceholder.typicode.com/users';
 
 export default () => {
@@ -8,15 +8,21 @@ export default () => {
 }
 
 export const newEmployee = (req)=>{
+  console.log('desde el api:', req)
 	return fetch(URL, {
 		method: 'POST',
-		body: JSON.stringify({
-			firstname: req.firstname,
-			lastname: req.lastname,
-			photo: req.photo,
-			longitude: req.longitude,
-			latitude: req.latitude
-		})
-	}).then((employee) => { Alert.alert(JSON.stringify(employee)); return employee.json(employee) })
-	.done();
+    headers: {
+       'Accept': 'application/x-www-form-urlencoded',
+       'Content-Type': 'application/x-www-form-urlencoded',
+     },
+		body: JSON.stringify(req)
+	})
+  .then((response) => {
+    console.log(response);
+    return response.json(response)
+  })
+  .then((resJson)=>{
+    console.log(resJson);
+  })
+  .catch((err)=>{ console.log(err) })
 }
