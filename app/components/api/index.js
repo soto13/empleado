@@ -8,14 +8,14 @@ export default () => {
 }
 
 export const newEmployee = (req)=>{
-  console.log('desde el api:', req)
+  console.log('desde el api:', JSON.stringify(req[0]))
 	return fetch(URL, {
 		method: 'POST',
     headers: {
-       'Accept': 'application/x-www-form-urlencoded',
-       'Content-Type': 'application/x-www-form-urlencoded',
-     },
-		body: JSON.stringify(req)
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+    },
+		body: JSON.stringify(req[0])
 	})
   .then((response) => {
     console.log(response);
