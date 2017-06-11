@@ -37,7 +37,7 @@ class empleado extends Component {
   };
   render() {
     return (
-      <EmployeeRegister/>
+      <Dashboard/>
     );
   }
 }

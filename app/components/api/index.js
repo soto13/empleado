@@ -26,3 +26,40 @@ export const newEmployee = (req)=>{
   })
   .catch((err)=>{ console.log(err) })
 }
+
+export const updateEmployee = (req)=>{
+   URL = URL + '/' + req[0]._id;
+   return fetch(URL, {
+     method: 'PUT',
+     headers: {
+       'Accept': 'application/json',
+       'Content-Type': 'application/json',
+     },
+     body: JSON.stringify(req[0])
+   })
+   .then((response) => {
+    console.log(response);
+    return response.json(response)
+  })
+  .then((resJson)=>{
+    console.log(resJson);
+  })
+  .catch((err)=>{ console.log(err) })
+}
+
+export const deleteEmloyee = (req)=>{
+  URL = URL + '/' + req[0]._id;
+  return fetch(URL, {
+    method: 'DELETE',
+    headers: {
+       'Accept': 'application/json',
+       'Content-Type': 'application/json',
+    }
+  })
+  .then((response) => {
+    console.log(response);
+    return response.json({ message: 'se elimino con exito' })
+  })
+  .catch((err)=>{ console.log(err) })
+}
+
