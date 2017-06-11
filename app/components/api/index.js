@@ -28,8 +28,8 @@ export const newEmployee = (req)=>{
 }
 
 export const updateEmployee = (req)=>{
-   URL = URL + '/' + req[0]._id;
-   return fetch(URL, {
+   let url = URL + '/' + req[0]._id;
+   return fetch(url, {
      method: 'PUT',
      headers: {
        'Accept': 'application/json',
@@ -48,8 +48,8 @@ export const updateEmployee = (req)=>{
 }
 
 export const deleteEmloyee = (req)=>{
-  URL = URL + '/' + req[0]._id;
-  return fetch(URL, {
+  let url = URL + '/' + req[0]._id;
+  return fetch(url, {
     method: 'DELETE',
     headers: {
        'Accept': 'application/json',
@@ -58,7 +58,10 @@ export const deleteEmloyee = (req)=>{
   })
   .then((response) => {
     console.log(response);
-    return response.json({ message: 'se elimino con exito' })
+    return response.json(response)
+  })
+  .then((resJson)=>{
+    console.log(resJson);
   })
   .catch((err)=>{ console.log(err) })
 }
